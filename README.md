@@ -1,6 +1,4 @@
-# GrpcTestVcpkg
-
-Install vcpkg and grpc
+### Install vcpkg and grpc first
 
 sudo apt update<br>
 sudo apt install -y zip unzip<br>
@@ -14,3 +12,8 @@ vcpkg version<br>
 
 sudo /opt/vcpkg integrate install<br>
 sudo /opt/vcpkg install grpc<br>
+
+
+### Building
+Go to /build folder run
+run_cmake.sh
