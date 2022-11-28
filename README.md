@@ -1,6 +1,6 @@
 # GrpcTestVcpkg
 
-Install vcpkg anf grpc
+Install vcpkg and grpc
 
 sudo apt update<br>
 sudo apt install -y zip unzip<br>
