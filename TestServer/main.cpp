@@ -24,7 +24,7 @@ int main(int argc, char* argv[])
 {
 	printf("TestGrpcServer v1.0\n");
 	
-    StartConvertorServer("localhost:50000");
+	StartConvertorServer("localhost:50000");
 
 	return 0; 
 }
