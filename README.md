@@ -16,3 +16,24 @@ sudo /opt/vcpkg install grpc<br>
 ### How to build
 Go to /build folder run
 run_cmake.sh
+
+
+### How to run
+
+The application converts number to string via grpc.
+
+Open a console, go to /build folder and run<br>
+GrpcTest.Server<br>
+
+Output is:<br>
+TestGrpcServer v1.0<br>
+
+Open another console, go to /build folder and run<br>
+GrpcTest.Client<br>
+
+Output is:<br>
+TestGrpcClient v1.0<br>
+Source number 12345<br>
+Result string 12345<br>
+
+
