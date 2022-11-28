@@ -8,7 +8,7 @@
 
 using namespace std;
 
-void StartConvertorServer(const string& listenAddress)
+void StartConverterServer(const string& listenAddress)
 {
     TestGrpcService::TestGrpsServerPart service;
 
@@ -24,7 +24,7 @@ int main(int argc, char* argv[])
 {
     printf("TestGrpcServer v1.0\n");
     
-    StartConvertorServer("localhost:50000");
+    StartConverterServer("localhost:50000");
 
     return 0;
 }

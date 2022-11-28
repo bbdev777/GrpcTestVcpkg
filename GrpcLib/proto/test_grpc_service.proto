@@ -6,5 +6,5 @@ import "test_grpc_messages.proto";
 
 service TestGrpc
 {
-	rpc ConvertIntTostring(ConversionRequest) returns (ConversionResponse) {}
+    rpc ConvertIntTostring(ConversionRequest) returns (ConversionResponse) {}
 }

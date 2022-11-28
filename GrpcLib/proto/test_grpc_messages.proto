@@ -2,10 +2,11 @@ syntax = "proto3";
 
 package TestGrpcService;
 
-message ConversionRequest {	
+message ConversionRequest {
 	uint32 int_value = 1;
 }
 
 message ConversionResponse {
 	string string_value = 1;
 }
+
