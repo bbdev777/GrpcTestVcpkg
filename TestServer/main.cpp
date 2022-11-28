@@ -12,7 +12,7 @@ void StartConvertorServer(const string& listenAddress)
 {
     TestGrpcService::TestGrpsServerPart service;
 
-w    grpc::ServerBuilder builder;
+    grpc::ServerBuilder builder;
     builder.SetMaxReceiveMessageSize(TestGrpcService::MaxMessageLength);
     builder.AddListeningPort(listenAddress, grpc::InsecureServerCredentials());
     builder.RegisterService(&service);
