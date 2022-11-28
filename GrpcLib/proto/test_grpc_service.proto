@@ -1,0 +1,10 @@
+syntax = "proto3";
+
+package TestGrpcService;
+
+import "test_grpc_messages.proto";
+
+service TestGrpc
+{
+	rpc ConvertIntTostring(ConversionRequest) returns (ConversionResponse) {}
+}
