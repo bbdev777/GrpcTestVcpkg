@@ -22,9 +22,9 @@ void StartConvertorServer(const string& listenAddress)
 
 int main(int argc, char* argv[])
 {
-	printf("TestGrpcServer v1.0\n");
-	
-	StartConvertorServer("localhost:50000");
+    printf("TestGrpcServer v1.0\n");
+    
+    StartConvertorServer("localhost:50000");
 
-	return 0; 
+    return 0;
 }
