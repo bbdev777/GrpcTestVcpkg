@@ -1,5 +1,4 @@
-### Install vcpkg and grpc first
-
+### Install vcpkg and grpc
 sudo apt update<br>
 sudo apt install -y zip unzip<br>
 sudo apt install -y build-essential pkg-config<br>
@@ -14,6 +13,6 @@ sudo /opt/vcpkg integrate install<br>
 sudo /opt/vcpkg install grpc<br>
 
 
-### Building
+### How to build
 Go to /build folder run
 run_cmake.sh
