@@ -11,7 +11,7 @@ namespace TestGrpcService
 {
     const int MaxMessageLength = 4096;
 
-    class TestGrpcConverter
+    class TestGrpcClient
     {
 	std::shared_ptr<grpc::Channel> channel;
 	std::unique_ptr<TestGrpc::Stub> service;
@@ -24,7 +24,7 @@ namespace TestGrpcService
 	}
 
 	public:
-	TestGrpcConverter(const std::string& serverAddress) :
+	TestGrpcClient(const std::string& serverAddress) :
 	    channel{ grpc::CreateCustomChannel(serverAddress,
 	    grpc::InsecureChannelCredentials(),
 	    CreateChannelArguments()) },
@@ -32,7 +32,7 @@ namespace TestGrpcService
 	{
 	}
 
-	//RPC method
+	//RPC method is called inside
 	std::string ConvertIntToString(int intValue)
 	{
 	    TestGrpcService::ConversionRequest request;
@@ -43,16 +43,43 @@ namespace TestGrpcService
 
 	    request.set_int_value(intValue);
 
-	    grpc::Status status = service->ConvertIntTostring(&context, request, &response);
+	    grpc::Status status = service->ConvertIntToString(&context, request, &response);
 	    if (!status.ok())
 	    {
-		throw std::runtime_error{ status.error_message() };
+			throw std::runtime_error{ status.error_message() };
 	    }
 
 	    return response.string_value();
 	}
 
-	virtual ~TestGrpcConverter() {};
+	//RPC method is called inside
+	double CalculateAvgValue(std::vector<int> intArray)
+	{
+		double avgValue = 0.0;
+	    TestGrpcService::ArrayAvgRequest request;
+	    TestGrpcService::ArrayAvgResponse response;
+	    grpc::ClientContext context;
+
+	    response.Clear();
+
+		for (auto item : intArray)
+		{
+			request.add_int_value(item);
+		}
+
+		grpc::Status status = service->CalculateAvgValueByArray(&context, request, &response);
+	    if (!status.ok())
+	    {
+			throw std::runtime_error{ status.error_message() };
+	    }
+
+		avgValue = response.avg_value();
+
+		return avgValue;
+	}
+
+
+	virtual ~TestGrpcClient() {};
 
 	private:
 

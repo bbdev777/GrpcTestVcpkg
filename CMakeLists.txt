@@ -1,5 +1,9 @@
 cmake_minimum_required(VERSION 3.5)
 
+#set(CMAKE_TOOLCHAIN_FILE "/opt/vcpkg/scripts/buildsystems/vcpkg.cmake")
+#set(VCPKG_TARGET_TRIPLET x64-linux CACHE STRING "VCPKG Target Triplet to use")
+
+
 set(ProjectName "GrpcTest")
 
 project(${ProjectName})

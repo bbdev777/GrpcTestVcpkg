@@ -10,7 +10,7 @@ using namespace std;
 
 void StartConverterServer(const string& listenAddress)
 {
-    TestGrpcService::TestGrpsServerPart service;
+    TestGrpcService::TestGrpsServer service;
 
     grpc::ServerBuilder builder;
     builder.SetMaxReceiveMessageSize(TestGrpcService::MaxMessageLength);

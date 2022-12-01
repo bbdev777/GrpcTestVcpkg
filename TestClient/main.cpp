@@ -7,25 +7,23 @@
 
 using namespace std;
 
+unique_ptr<TestGrpcService::TestGrpcClient> InitConnection(const string& address);
+
+void    Converter(TestGrpcService::TestGrpcClient* client);
+void    CalculateAvgValue(TestGrpcService::TestGrpcClient* client);
+
 int main(int argc, char* argv[])
 {
     printf("TestGrpcClient v1.0\n");
     
-    TestGrpcService::TestGrpcConverter	converter("localhost:50000");
+    auto client = InitConnection("localhost:50000");
 
-    try
-    {
-	int testValue = 12345;
+    if (client == nullptr)
+        return 1;
 
-	std::string stringValue = converter.ConvertIntToString(testValue);
-
-	printf("Source number %d\n", testValue);
-	printf("Result string %s\n", stringValue.c_str());
-    }
-    catch (std::exception& e)
-    {
-	printf("Error message: %s\n", e.what());
-    }
+    //Test methods call   
+    Converter(client.get());
+    CalculateAvgValue(client.get());
 
 #ifdef WIN32
     printf("Press Enter to exit\n");
@@ -34,3 +32,57 @@ int main(int argc, char* argv[])
 
     return 0; 
 }
+
+unique_ptr<TestGrpcService::TestGrpcClient> InitConnection(const string& address)
+{
+    unique_ptr<TestGrpcService::TestGrpcClient>	client;   
+
+    try
+    {
+        client = make_unique<TestGrpcService::TestGrpcClient>(address);
+    }
+    catch(const std::exception& e)
+    {
+        printf("Connection can't be created\n");
+        printf("%s\n", e.what());
+    }
+
+    return client;
+}
+
+void    Converter(TestGrpcService::TestGrpcClient* client)
+{
+    try
+    {
+    	int testValue = 12345;
+
+	    std::string stringValue = client->ConvertIntToString(testValue);
+
+	    printf("Source number %d\n", testValue);
+	    printf("Result string %s\n", stringValue.c_str());
+    }
+    catch (std::exception& e)
+    {
+	    printf("Error message: %s\n", e.what());
+    }    
+}
+
+void    CalculateAvgValue(TestGrpcService::TestGrpcClient* converter)
+{
+    try
+    {
+    	std::vector<int> testArray({1, 2, 3, 5, 7, 9, 11});
+
+	    double avgValue = converter->CalculateAvgValue(testArray);
+
+        for_each(testArray.begin(), testArray.end(), [](int value){ printf("%d ", value);});
+
+        printf("\n");
+	    printf("Average value %1.2lf\n", avgValue);
+    }
+    catch (std::exception& e)
+    {
+	    printf("Error message: %s\n", e.what());
+    }    
+}
+

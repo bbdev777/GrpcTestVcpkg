@@ -10,3 +10,10 @@ message ConversionResponse {
 	string string_value = 1;
 }
 
+message ArrayAvgRequest {
+	repeated uint32 int_value = 1;
+}
+
+message ArrayAvgResponse {
+	double avg_value = 1;
+}
