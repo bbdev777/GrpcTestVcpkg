@@ -1,0 +1,19 @@
+---
+version: "3.7"
+services:
+  test_client:
+    image: 10.74.33.15:5000/test.application:1.0.5
+    command: /GrpcTest.Client
+#    volumes:
+#    - <local path>:<container path>
+    depends_on:
+    - test_server
+    network_mode: host
+#    restart: "on-failure"
+  test_server:
+    image: 10.74.33.15:5000/test.application:1.0.5
+    command: /GrpcTest.Server
+#    volumes:
+#    - <local path>:<container path>
+    network_mode: host
+#    restart: "on-failure"
