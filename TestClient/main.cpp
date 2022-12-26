@@ -25,6 +25,9 @@ int main(int argc, char* argv[])
     Converter(client.get());
     CalculateAvgValue(client.get());
 
+    //Stopping the server
+    client.get()->StopServer();
+
 #ifdef WIN32
     printf("Press Enter to exit\n");
     int value = getchar();
@@ -67,14 +70,15 @@ void    Converter(TestGrpcService::TestGrpcClient* client)
     }    
 }
 
-void    CalculateAvgValue(TestGrpcService::TestGrpcClient* converter)
+void    CalculateAvgValue(TestGrpcService::TestGrpcClient* client)
 {
     try
     {
     	std::vector<int> testArray({1, 2, 3, 5, 7, 9, 11});
 
-	    double avgValue = converter->CalculateAvgValue(testArray);
+	    double avgValue = client->CalculateAvgValue(testArray);
 
+        printf("A test array for average calculation\n");
         for_each(testArray.begin(), testArray.end(), [](int value){ printf("%d ", value);});
 
         printf("\n");

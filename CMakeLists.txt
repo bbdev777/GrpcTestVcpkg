@@ -14,6 +14,7 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 find_package(Threads REQUIRED)
 find_package(gRPC CONFIG REQUIRED)
 
+
 ###############################################################
 # Generating RPC objects
 ###############################################################
@@ -101,4 +102,6 @@ target_link_libraries(${ProjectName}.Client
 	${PROJECT_NAME}.GrpcLib
 )
 ###############################################################
+
+message("Current binary dir: " ${CMAKE_CURRENT_BINARY_DIR})
 

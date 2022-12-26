@@ -78,6 +78,19 @@ namespace TestGrpcService
 		return avgValue;
 	}
 
+	//RPC method is called inside
+	void StopServer()
+	{
+		grpc::ClientContext context;
+		google::protobuf::Empty	request, response;
+		
+		grpc::Status status = service->StopServer(&context, request, &response);
+
+		if (!status.ok())
+	    {
+			throw std::runtime_error{ status.error_message() };
+	    }		
+	}
 
 	virtual ~TestGrpcClient() {};
 

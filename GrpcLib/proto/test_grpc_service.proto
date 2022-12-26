@@ -3,10 +3,13 @@ syntax = "proto3";
 package TestGrpcService;
 
 import "test_grpc_messages.proto";
+import "google/protobuf/empty.proto";
 
 service TestGrpc
 {
     rpc ConvertIntToString(ConversionRequest) returns (ConversionResponse) {}
     
     rpc CalculateAvgValueByArray(ArrayAvgRequest) returns (ArrayAvgResponse) {}
+
+    rpc StopServer(google.protobuf.Empty) returns (google.protobuf.Empty) {}
 }

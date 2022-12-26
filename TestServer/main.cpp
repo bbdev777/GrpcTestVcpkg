@@ -17,7 +17,17 @@ void StartConverterServer(const string& listenAddress)
     builder.AddListeningPort(listenAddress, grpc::InsecureServerCredentials());
     builder.RegisterService(&service);
     unique_ptr<grpc::Server> grpcServer(builder.BuildAndStart());
-    grpcServer->Wait();
+
+    printf("Server has been started\n");
+
+    auto serverThread = std::thread([&]() { grpcServer->Wait(); });
+
+    service.WaitForExit();
+
+	grpcServer->Shutdown();
+	serverThread.join();
+
+    printf("Server has been stopped\n");
 }
 
 int main(int argc, char* argv[])
